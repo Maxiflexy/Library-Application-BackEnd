@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -24,7 +25,7 @@ public class Review {
     private Date date;
 
     @Column(name = "rating")
-    private double rating;
+    private BigDecimal rating;
 
     @Column(name = "book_id")
     private Long bookId;
