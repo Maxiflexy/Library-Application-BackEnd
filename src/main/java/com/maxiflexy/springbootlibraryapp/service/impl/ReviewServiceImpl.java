@@ -2,7 +2,6 @@ package com.maxiflexy.springbootlibraryapp.service.impl;
 
 import com.maxiflexy.springbootlibraryapp.entity.Review;
 import com.maxiflexy.springbootlibraryapp.payloads.request.ReviewRequest;
-import com.maxiflexy.springbootlibraryapp.repository.BookRepository;
 import com.maxiflexy.springbootlibraryapp.repository.ReviewRepository;
 import com.maxiflexy.springbootlibraryapp.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +17,6 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 public class ReviewServiceImpl implements ReviewService {
 
-    private final BookRepository bookRepository;
     private final ReviewRepository reviewRepository;
 
     public void postReview(String userEmail, ReviewRequest reviewRequest) throws Exception{
@@ -40,5 +38,14 @@ public class ReviewServiceImpl implements ReviewService {
 
         review.setDate(Date.valueOf(LocalDate.now()));
         reviewRepository.save(review);
+    }
+
+    public boolean userReviewListed(String userEmail, Long bookId){
+        Review validateReview = reviewRepository.findByUserEmailAndBookId(userEmail, bookId);
+        if(validateReview != null){
+            return true;
+        }else {
+            return false;
+        }
     }
 }
