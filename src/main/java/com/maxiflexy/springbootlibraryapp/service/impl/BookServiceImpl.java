@@ -50,7 +50,9 @@ public class BookServiceImpl implements BookService {
             return true;
         else
             return false;
+    }
 
-
+    public int currentLoansCount(String userEmail){
+        return checkoutRepository.findBooksByUserEmail(userEmail).size();
     }
 }
