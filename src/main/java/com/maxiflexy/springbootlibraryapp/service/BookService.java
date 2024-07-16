@@ -1,6 +1,9 @@
 package com.maxiflexy.springbootlibraryapp.service;
 
 import com.maxiflexy.springbootlibraryapp.entity.Book;
+import com.maxiflexy.springbootlibraryapp.payloads.response.ShelfCurrentLoansResponse;
+
+import java.util.List;
 
 public interface BookService {
 
@@ -9,4 +12,6 @@ public interface BookService {
     boolean checkoutBookByUser(String userEmail, Long bookId);
 
     int currentLoansCount(String userEmail);
+
+    public List<ShelfCurrentLoansResponse> currentLoans(String userEmail) throws Exception;
 }
