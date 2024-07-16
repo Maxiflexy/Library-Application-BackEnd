@@ -3,6 +3,7 @@ package com.maxiflexy.springbootlibraryapp.config;
 import com.okta.spring.boot.oauth.Okta;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -45,7 +46,7 @@ public class SecurityConfig {
 
         // Protect endpoints at /api/<type>/secure
         httpSecurity.authorizeHttpRequests(configurer -> configurer
-                .requestMatchers(antMatcher("/api/books/secure/**"))
+                .requestMatchers(antMatcher(HttpMethod.valueOf("/api/books/secure/**"), "/api/reviews/secure/**"))
                 .authenticated()
                 .anyRequest().permitAll());
 
