@@ -37,28 +37,22 @@ public class SecurityConfig {
         httpSecurity.cors(cors -> cors
                 .configurationSource(corsConfigurationSource()));
 
-        httpSecurity// Configure JWT-based OAuth2 resource server
+        // Configure JWT-based OAuth2 resource server
+        httpSecurity
                 .oauth2ResourceServer(oauth2 -> oauth2
                         .jwt(jwt -> jwt
-                                .jwkSetUri("https://dev-61814843.okta.com/oauth2/default/v1/keys") // replace with your Okta JWK set URI
+                                .jwkSetUri("https://dev-61814843.okta.com/oauth2/default/v1/keys")
                         )
                 );
 
         // Protect endpoints at /api/<type>/secure
-        httpSecurity.authorizeHttpRequests(configurer -> configurer
-                .requestMatchers(antMatcher(HttpMethod.valueOf("/api/books/secure/**"), "/api/reviews/secure/**"))
-                .authenticated()
+        httpSecurity.authorizeHttpRequests(configurer -> configurer.
+                requestMatchers(
+                        antMatcher(HttpMethod.valueOf("/api/books/secure/**")),
+                        antMatcher(HttpMethod.valueOf("/api/reviews/secure/**")),
+                        antMatcher(HttpMethod.valueOf("/api/messages/secure/**"))
+                ).authenticated()
                 .anyRequest().permitAll());
-
-//        // Configure JWT-based OAuth2 resource server
-//        httpSecurity.securityMatcher(request -> {
-//                    // Check if request has a JWT authentication token
-//                    if(request.getUserPrincipal() instanceof JwtAuthenticationToken) {
-//                        return true; // Allow request if it has a JWT token
-//                    }
-//                    return false; // Deny request if no JWT token is present
-//                })
-//                .authorizeHttpRequests(authorize -> authorize.anyRequest().authenticated());
 
 
         // Add content negotiation strategy
