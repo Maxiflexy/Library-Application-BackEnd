@@ -1,7 +1,6 @@
 package com.maxiflexy.springbootlibraryapp.controller;
 
 import com.maxiflexy.springbootlibraryapp.entity.Message;
-import com.maxiflexy.springbootlibraryapp.payloads.request.ReviewRequest;
 import com.maxiflexy.springbootlibraryapp.service.MessagesService;
 import com.maxiflexy.springbootlibraryapp.utils.ExtractJWT;
 import lombok.RequiredArgsConstructor;
