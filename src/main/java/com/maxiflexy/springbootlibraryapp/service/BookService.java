@@ -14,4 +14,6 @@ public interface BookService {
     int currentLoansCount(String userEmail);
 
     public List<ShelfCurrentLoansResponse> currentLoans(String userEmail) throws Exception;
+
+    void returnBook(String userEmail, Long bookId) throws Exception;
 }
