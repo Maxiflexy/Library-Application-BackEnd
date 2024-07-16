@@ -1,7 +1,6 @@
 package com.maxiflexy.springbootlibraryapp.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,10 +32,11 @@ public class History {
     @Column(name = "author")
     private String author;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 1000)
     private String description;
 
-    @Column(name = "image")
+    @Lob
+    @Column(name = "image", columnDefinition = "MEDIUMBLOB")
     private String image;
 
     public History(String userEmail, String checkoutDate, String returnedDate,
