@@ -1,6 +1,7 @@
 package com.maxiflexy.springbootlibraryapp.config;
 
 import com.maxiflexy.springbootlibraryapp.entity.Book;
+import com.maxiflexy.springbootlibraryapp.entity.Message;
 import com.maxiflexy.springbootlibraryapp.entity.Review;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
@@ -20,9 +21,11 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
 
         config.exposeIdsFor(Book.class);
         config.exposeIdsFor(Review.class);
+        config.exposeIdsFor(Message.class);
 
         disableHttpMethods(Book.class, config, theUnsupportedActions);
         disableHttpMethods(Review.class, config, theUnsupportedActions);
+        disableHttpMethods(Message.class, config, theUnsupportedActions);
 
         /* Configure CORS mapping */
         cors.addMapping(config.getBasePath() + "/**")

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/messages")
 public class MessagesController {
 
-    private MessagesService messagesService;
+    private final MessagesService messagesService;
 
     @PostMapping("/secure/add/message")
     public void postMessage(@RequestHeader(value = "Authorization")
