@@ -1,10 +1,13 @@
 package com.maxiflexy.springbootlibraryapp.controller;
 
 import com.maxiflexy.springbootlibraryapp.entity.Book;
+import com.maxiflexy.springbootlibraryapp.payloads.response.ShelfCurrentLoansResponse;
 import com.maxiflexy.springbootlibraryapp.service.BookService;
 import com.maxiflexy.springbootlibraryapp.utils.ExtractJWT;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin("http://localhost:3000")
 @RestController
@@ -30,5 +33,12 @@ public class BookController {
     public int currentLoansCount(@RequestHeader(value = "Authorization") String token){
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
         return bookService.currentLoansCount(userEmail);
+    }
+
+    @GetMapping("/secure/current-loans")
+    public List<ShelfCurrentLoansResponse> currentLoans(@RequestHeader(value = "Authorization") String token)
+            throws Exception {
+        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
+        return bookService.currentLoans(userEmail);
     }
 }
