@@ -2,9 +2,11 @@ package com.maxiflexy.springbootlibraryapp.service.impl;
 
 import com.maxiflexy.springbootlibraryapp.entity.Book;
 import com.maxiflexy.springbootlibraryapp.entity.Checkout;
+import com.maxiflexy.springbootlibraryapp.entity.History;
 import com.maxiflexy.springbootlibraryapp.payloads.response.ShelfCurrentLoansResponse;
 import com.maxiflexy.springbootlibraryapp.repository.BookRepository;
 import com.maxiflexy.springbootlibraryapp.repository.CheckoutRepository;
+import com.maxiflexy.springbootlibraryapp.repository.HistoryRepository;
 import com.maxiflexy.springbootlibraryapp.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,6 +27,7 @@ public class BookServiceImpl implements BookService {
 
     private final BookRepository bookRepository;
     private final CheckoutRepository checkoutRepository;
+    private final HistoryRepository historyRepository;
 
 
     public Book checkoutBook(String userEmail, Long bookId) throws Exception{
@@ -110,6 +113,12 @@ public class BookServiceImpl implements BookService {
 
         bookRepository.save(book.get());
         checkoutRepository.deleteById(validateCheckout.getId());
+
+        History history = new History(
+                userEmail, validateCheckout.getCheckoutDate(), LocalDate.now().toString(),
+                book.get().getTitle(),book.get().getAuthor(), book.get().getDescription(), book.get().getImg());
+
+        historyRepository.save(history);
     }
 
     public void renewLoan(String userEmail, Long bookId) throws Exception{
