@@ -1,6 +1,7 @@
 package com.maxiflexy.springbootlibraryapp.controller;
 
 import com.maxiflexy.springbootlibraryapp.entity.Message;
+import com.maxiflexy.springbootlibraryapp.payloads.request.AdminQuestionRequest;
 import com.maxiflexy.springbootlibraryapp.service.MessagesService;
 import com.maxiflexy.springbootlibraryapp.utils.ExtractJWT;
 import lombok.RequiredArgsConstructor;
@@ -20,5 +21,20 @@ public class MessagesController {
 
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
         messagesService.postMessage(messageRequest, userEmail);
+    }
+
+    @PutMapping("/secure/admin/message")
+    public void putMessage(@RequestHeader(value = "Authorization")
+                               String token, @RequestBody AdminQuestionRequest adminQuestionRequest) throws Exception{
+
+        String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
+        String admin = ExtractJWT.payloadJWTExtraction(token, "\"email\"");
+        String admin2 = ExtractJWT.payloadJWTExtraction(token, "\"userType\"");
+
+
+        System.out.println(admin);
+        System.out.println(admin2);
+
+        messagesService.putMessage(adminQuestionRequest, userEmail);
     }
 }
