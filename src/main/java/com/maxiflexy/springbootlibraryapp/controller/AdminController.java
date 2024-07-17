@@ -6,7 +6,7 @@ import com.maxiflexy.springbootlibraryapp.utils.ExtractJWT;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("https://localhost:3000")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/admin")
