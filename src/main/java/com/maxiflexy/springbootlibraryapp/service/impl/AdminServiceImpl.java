@@ -42,4 +42,17 @@ public class AdminServiceImpl implements AdminService {
 
         bookRepository.save(book.get());
     }
+
+    public void decreaseBookQuantity(Long bookId) throws Exception{
+        Optional<Book> book = bookRepository.findById(bookId);
+
+        if(!book.isPresent() || book.get().getCopiesAvailable() <= 0 || book.get().getCopies() <= 0){
+           throw new Exception("Book not found or quantity locked");
+        }
+
+        book.get().setCopiesAvailable(book.get().getCopiesAvailable() - 1);
+        book.get().setCopies(book.get().getCopies() - 1);
+
+        bookRepository.save(book.get());
+    }
 }
