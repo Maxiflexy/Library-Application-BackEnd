@@ -15,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -149,6 +150,24 @@ public class BookServiceImpl implements BookService {
         book.get().setCopiesAvailable(book.get().getCopiesAvailable() + 1);
 
         bookRepository.save(book.get());
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date d1 = simpleDateFormat.parse(validateCheckout.getReturnDate());
+        Date d2 = simpleDateFormat.parse(LocalDate.now().toString());
+
+        TimeUnit time = TimeUnit.DAYS;
+
+        double differenceInTime = time.convert(d1.getTime() - d2.getTime(), TimeUnit.MILLISECONDS);
+
+        if(differenceInTime < 0){
+            Payment payment = paymentRepository.findByUserEmail(userEmail);
+
+            payment.setAmount(payment.getAmount() + (differenceInTime * -1));
+            paymentRepository.save(payment);
+        }
+
+
         checkoutRepository.deleteById(validateCheckout.getId());
 
         History history = new History(
