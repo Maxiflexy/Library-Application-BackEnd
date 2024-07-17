@@ -7,13 +7,9 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.web.accept.ContentNegotiationStrategy;
 import org.springframework.web.accept.HeaderContentNegotiationStrategy;
-import org.springframework.security.web.util.matcher.RequestMatcher;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -50,7 +46,8 @@ public class SecurityConfig {
                 requestMatchers(
                         antMatcher(HttpMethod.valueOf("/api/books/secure/**")),
                         antMatcher(HttpMethod.valueOf("/api/reviews/secure/**")),
-                        antMatcher(HttpMethod.valueOf("/api/messages/secure/**"))
+                        antMatcher(HttpMethod.valueOf("/api/messages/secure/**")),
+                        antMatcher(HttpMethod.valueOf("/api/admin/secure/**"))
                 ).authenticated()
                 .anyRequest().permitAll());
 

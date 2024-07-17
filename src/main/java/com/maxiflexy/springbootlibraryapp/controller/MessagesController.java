@@ -34,6 +34,7 @@ public class MessagesController {
 
         System.out.println(admin);
         System.out.println(admin2);
+        System.out.println(userEmail);
 
         messagesService.putMessage(adminQuestionRequest, userEmail);
     }
