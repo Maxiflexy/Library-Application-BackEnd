@@ -29,4 +29,18 @@ public class AdminController {
 //        }
         adminService.postBook(addBookRequest);
     }
+
+    @PutMapping("secure/increase/book/quantity")
+    public void increaseBookQuantity(@RequestHeader(value = "Authorization") String token,
+                                     @RequestParam Long bookId) throws Exception{
+
+        String admin = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
+
+        if(admin == null || !admin.equals("admin")){
+            //rosemary@criticalthinkers.tech
+            throw new Exception("Administration page only");
+        }
+        adminService.increaseBookQuantity(bookId);
+
+    }
 }
