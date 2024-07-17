@@ -3,6 +3,8 @@ package com.maxiflexy.springbootlibraryapp.service.impl;
 import com.maxiflexy.springbootlibraryapp.entity.Book;
 import com.maxiflexy.springbootlibraryapp.payloads.request.AddBookRequest;
 import com.maxiflexy.springbootlibraryapp.repository.BookRepository;
+import com.maxiflexy.springbootlibraryapp.repository.CheckoutRepository;
+import com.maxiflexy.springbootlibraryapp.repository.ReviewRepository;
 import com.maxiflexy.springbootlibraryapp.service.AdminService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,8 @@ import java.util.Optional;
 public class AdminServiceImpl implements AdminService {
 
     private final BookRepository bookRepository;
+    private final ReviewRepository reviewRepository;
+    private final CheckoutRepository checkoutRepository;
 
     public void postBook(AddBookRequest addBookRequest){
 
@@ -54,5 +58,16 @@ public class AdminServiceImpl implements AdminService {
         book.get().setCopies(book.get().getCopies() - 1);
 
         bookRepository.save(book.get());
+    }
+
+    public void deleteBook(Long bookId) throws Exception{
+        Optional<Book> book = bookRepository.findById(bookId);
+
+        if(!book.isPresent()){
+            throw new Exception("Book not found");
+        }
+        bookRepository.delete(book.get());
+        checkoutRepository.deleteAllByBookId(bookId);
+        reviewRepository.deleteAllByBookId(bookId);
     }
 }
