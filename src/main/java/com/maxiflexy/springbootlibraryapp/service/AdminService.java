@@ -9,4 +9,6 @@ public interface AdminService {
     void increaseBookQuantity(Long bookId) throws Exception;
 
     void decreaseBookQuantity(Long bookId) throws Exception;
+
+    void deleteBook(Long bookId) throws Exception;
 }
