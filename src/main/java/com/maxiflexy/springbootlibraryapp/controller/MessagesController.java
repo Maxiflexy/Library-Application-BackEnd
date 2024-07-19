@@ -29,8 +29,6 @@ public class MessagesController {
 
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
         String admin = ExtractJWT.payloadJWTExtraction(token, "\"email\"");
-        String admin2 = ExtractJWT.payloadJWTExtraction(token, "\"userType\"");
-
 
         System.out.println(admin);
         System.out.println(userEmail);
