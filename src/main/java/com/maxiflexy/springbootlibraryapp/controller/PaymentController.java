@@ -26,7 +26,6 @@ public class PaymentController {
         String paymentString = paymentIntent.toJson();
         System.out.println(paymentIntent);
 
-
         return new ResponseEntity<>(paymentString, HttpStatus.OK);
     }
 
