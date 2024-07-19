@@ -28,8 +28,6 @@ public class MessagesController {
                                String token, @RequestBody AdminQuestionRequest adminQuestionRequest) throws Exception{
 
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
-        String admin = ExtractJWT.payloadJWTExtraction(token, "\"email\"");
-
         System.out.println(userEmail);
 
         messagesService.putMessage(adminQuestionRequest, userEmail);
