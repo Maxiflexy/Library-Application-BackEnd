@@ -162,7 +162,6 @@ public class BookServiceImpl implements BookService {
 
         if(differenceInTime < 0){
             Payment payment = paymentRepository.findByUserEmail(userEmail);
-
             payment.setAmount(payment.getAmount() + (differenceInTime * -1));
             paymentRepository.save(payment);
         }
