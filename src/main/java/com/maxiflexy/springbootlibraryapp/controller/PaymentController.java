@@ -40,6 +40,7 @@ public class PaymentController {
         if(userEmail == null){
 
             throw new Exception("User email is missing");
+
         }
 
         return paymentService.stripePayment(userEmail);
