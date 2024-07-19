@@ -38,6 +38,7 @@ public class PaymentController {
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
 
         if(userEmail == null){
+
             throw new Exception("User email is missing");
         }
 
