@@ -27,7 +27,6 @@ public class PaymentController {
         System.out.println(paymentIntent);
 
 
-
         return new ResponseEntity<>(paymentString, HttpStatus.OK);
     }
 
@@ -38,13 +37,9 @@ public class PaymentController {
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
 
         if(userEmail == null){
-
             throw new Exception("User email is missing");
-
         }
-
         return paymentService.stripePayment(userEmail);
-
     }
 
 
