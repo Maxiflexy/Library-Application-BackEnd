@@ -10,12 +10,10 @@ import com.maxiflexy.springbootlibraryapp.repository.CheckoutRepository;
 import com.maxiflexy.springbootlibraryapp.repository.HistoryRepository;
 import com.maxiflexy.springbootlibraryapp.repository.PaymentRepository;
 import com.maxiflexy.springbootlibraryapp.service.BookService;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
