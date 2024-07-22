@@ -35,6 +35,7 @@ public class PaymentServiceImpl implements PaymentService {
     public PaymentIntent createPaymentIntent(PaymentInfoRequest paymentInfoRequest) throws StripeException{
 
         List<String> paymentMethodTypes = new ArrayList<>();
+
         paymentMethodTypes.add("card");
 
         Map<String, Object> params = new HashMap<>();
