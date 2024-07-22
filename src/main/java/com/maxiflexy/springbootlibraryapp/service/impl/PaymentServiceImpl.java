@@ -28,7 +28,6 @@ public class PaymentServiceImpl implements PaymentService {
                               @Value("${stripe.key.secret}") String secretKey) {
 
         this.paymentRepository = paymentRepository;
-
         Stripe.apiKey = secretKey;
     }
 
