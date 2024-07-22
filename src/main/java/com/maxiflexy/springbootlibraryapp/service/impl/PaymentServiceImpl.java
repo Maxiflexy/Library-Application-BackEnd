@@ -41,6 +41,7 @@ public class PaymentServiceImpl implements PaymentService {
 
         params.put("currency", paymentInfoRequest.getCurrency());
 
+
         params.put("payment_method_types", paymentMethodTypes);
 
         return PaymentIntent.create(params);
