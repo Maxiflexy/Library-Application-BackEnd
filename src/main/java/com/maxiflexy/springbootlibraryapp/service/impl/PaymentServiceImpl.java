@@ -36,7 +36,9 @@ public class PaymentServiceImpl implements PaymentService {
         paymentMethodTypes.add("card");
 
         Map<String, Object> params = new HashMap<>();
+
         params.put("amount", paymentInfoRequest.getAmount());
+
         params.put("currency", paymentInfoRequest.getCurrency());
 
         params.put("payment_method_types", paymentMethodTypes);
