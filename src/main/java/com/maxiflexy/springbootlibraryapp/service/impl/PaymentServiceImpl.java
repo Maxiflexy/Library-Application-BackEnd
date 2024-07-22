@@ -50,7 +50,6 @@ public class PaymentServiceImpl implements PaymentService {
         Payment payment = paymentRepository.findByUserEmail(userEmail);
 
         if(payment == null){
-
             throw new Exception("Payment information is missing");
         }
 
