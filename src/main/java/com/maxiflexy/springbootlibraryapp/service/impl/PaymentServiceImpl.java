@@ -59,7 +59,5 @@ public class PaymentServiceImpl implements PaymentService {
         paymentRepository.save(payment);
 
         return new ResponseEntity<>(HttpStatus.OK);
-
-
     }
 }
