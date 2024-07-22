@@ -54,10 +54,11 @@ public class PaymentServiceImpl implements PaymentService {
             throw new Exception("Payment information is missing");
         }
 
-        payment.setAmount(00.00);
+        payment.setAmount(00.30);
 
         paymentRepository.save(payment);
 
         return new ResponseEntity<>(HttpStatus.OK);
+
     }
 }
